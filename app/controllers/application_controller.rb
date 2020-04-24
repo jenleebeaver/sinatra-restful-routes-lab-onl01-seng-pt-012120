@@ -1,3 +1,5 @@
+require './config/environment' #don't forget me!
+
 class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
@@ -10,8 +12,8 @@ class ApplicationController < Sinatra::Base
  		end
  		 
  		post '/recipes' do
- 		  @recipe = Recipe.create(:name => params[:name], :ingredients => params[:ingredients])
- 		  redirect to "/recipes/#{@recipe.id}"
+      @recipes = Recipe.all
+      erb :index
 		end
 
 end
